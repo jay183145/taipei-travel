@@ -3,8 +3,9 @@ import { ref } from 'vue';
 
 const getAttractions = ()=> {
 
-  let attractions = ref(null)
-  let error = ref(null)
+  const attractions = ref(null)
+  const attractionWithOrganizer = ref(null)
+  const error = ref(null)
 
   //set header
   const config = {
@@ -20,16 +21,16 @@ const getAttractions = ()=> {
     const load = async () => {
       try {
           axios.get(`${corsURL}${apiURL}`, config)
-            .then(function (response) {
-            console.log(response.data.data)
-            attractions.value = response.data.data
+            .then((response) => {
+              attractions.value = response.data.data
+              console.log(response.data.data)
+
+              attractionWithOrganizer.value = response.data.data.filter((hasOrg) => hasOrg.organizer)
+              console.log(attractionWithOrganizer)
             })
-            // .catch(function (error) {
-            //   console.log(error);
-            // })
-            // .then(function () {
-            //   // always executed
-            // });
+            .catch((error) => {
+              console.log(error);
+            })
       }
       catch (err) {
         error.value = err.message
