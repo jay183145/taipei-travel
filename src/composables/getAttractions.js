@@ -37,6 +37,6 @@ const getAttractions = ()=> {
       }
     }
 
-    return { attractions, error, load }
+    return { attractionWithOrganizer, attractions, error, load }
 }
 export default getAttractions
