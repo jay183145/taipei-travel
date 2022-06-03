@@ -2,8 +2,9 @@
   <div class="home">
     <h1>台北旅遊網</h1>
     <div v-if="error">{{ error }}</div>
-    <div v-if="attractionWithOrganizer!==null" v-for="attraction in attractions" :key="attraction.id" class="attractions">
-      {{ attraction.title }} =============> {{ attraction.organizer }}
+    <div v-if="attractionWithOrganizer!==null" v-for="organizer in attractionWithOrganizer" :key="attractionWithOrganizer.id" class="attractions">
+      {{ organizer.organizer }}
+      <a :href="organizer.url">{{ organizer.title }}</a>
     </div>
     <p v-else>
       <Spinner />
@@ -21,11 +22,4 @@ const { attractionWithOrganizer, attractions, error, load } = getAttractions()
 load()
 
 
-
-// onMounted(() =>{
-//   attractions.map(x => organizerList.push(x.organizer))
-//   console.log(organizerList)
-// })
-
-//---------------------------------organizerList---------------------------------------//
 </script>
