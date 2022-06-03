@@ -26,6 +26,12 @@ const { attractionWithOrganizer, attractions, error, load } = getAttractions()
 
 load()
 
+
+// for(let i = 0; i <= attractionWithOrganizer.List.length; i++) {
+
+// }
+
+
 </script>
 
 <style>

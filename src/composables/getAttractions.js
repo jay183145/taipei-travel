@@ -22,8 +22,8 @@ const config = {
         .then((response) => {
 
           //get all datas in the setting time
-          attractions.value = response.data.data
-          console.log(response.data.data)
+          attractions.value = response.data
+          console.log(attractions)
 
           //get the datas which has organizer in the setting time
           attractionWithOrganizer.value = response.data.data.filter((hasOrg) => hasOrg.organizer)
