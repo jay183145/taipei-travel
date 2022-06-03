@@ -5,13 +5,13 @@
     <div v-for="attraction in attractions" :key="attraction.id" class="attractions">
       {{ attraction.title }} =============> {{ attraction.organizer }}
     </div>
+
   </div>
 </template>
 
 <script setup>
 import getAttractions from '../composables/getAttractions'
-import { ref } from 'vue';
-
+import { ref } from 'vue'
 
 const { attractions, error, load } = getAttractions()
 
