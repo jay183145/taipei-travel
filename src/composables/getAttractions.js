@@ -23,10 +23,10 @@ const getAttractions = ()=> {
           axios.get(`${corsURL}${apiURL}`, config)
             .then((response) => {
               attractions.value = response.data.data
-              console.log(response.data.data)
+              // console.log(response.data.data)
 
               attractionWithOrganizer.value = response.data.data.filter((hasOrg) => hasOrg.organizer)
-              console.log(attractionWithOrganizer)
+              // console.log(attractionWithOrganizer)
             })
             .catch((error) => {
               console.log(error);
