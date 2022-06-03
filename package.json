@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "cors": "^2.8.5",
     "element-plus": "^2.2.2",
     "pinia": "^2.0.14",
     "vue": "^3.2.36",
