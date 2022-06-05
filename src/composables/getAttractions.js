@@ -29,8 +29,8 @@ const config = {
           attractionWithOrganizer.value = response.data.data.filter((hasOrg) => hasOrg.organizer)
           console.log(attractionWithOrganizer)
         })
-        .catch((error) => {
-          console.log(error);
+        .catch((err) => {
+          error.value = err.message
         })
     }
     catch (err) {
