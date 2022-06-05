@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ref } from 'vue';
+import _ from 'lodash'
 
 const getAttractions = ()=> {
 
@@ -31,11 +32,16 @@ const config = {
           console.log(attractionWithOrganizer)
           console.log(Object.values(attractionWithOrganizer._rawValue))
           //object split and deepcopy
-          let organizerSplit = Object.values(attractionWithOrganizer._rawValue)
+          const organizerSplit = _.cloneDeep(attractionWithOrganizer.value)
+          // all organizer in to array
+          organizerSplit.map((obj) => {
+            obj["organizer"] = obj["organizer"].split('、')
+            // if (obj["organizer"] > 1) {
+
+            // }
+          }) 
+
           console.log(organizerSplit)
-          // 
-          organizerSplit.forEach((obj) => console.log(obj))
-          
         })
         .catch((err) => {
           error.value = err.message
