@@ -4,7 +4,9 @@ import { ref } from 'vue';
 const getAttractions = ()=> {
 
   const attractions = ref(null)
+
   const attractionWithOrganizer = ref(null)
+  let organizerSplit = ref(null)
   const error = ref(null)
 
 //set header
@@ -28,6 +30,9 @@ const config = {
           //get the datas which has organizer in the setting time
           attractionWithOrganizer.value = response.data.data.filter((hasOrg) => hasOrg.organizer)
           console.log(attractionWithOrganizer)
+
+          organizerSplit = Object.values(attractionWithOrganizer._rawValue)
+          console.log(organizerSplit.length)
         })
         .catch((err) => {
           error.value = err.message
