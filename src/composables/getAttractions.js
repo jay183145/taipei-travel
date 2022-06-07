@@ -37,12 +37,14 @@ const config = {
 
           let afterSplit = []        
           let doSplit = organizerSplit.forEach(element => {
+            let organizerArray = []
             Object.entries(element).forEach(([key, value]) => {
               // console.log(`${key}: ${value}`)
-              if ( key === "organizer"&& value.includes("、")) {
-                console.log(value)
-              }
-            });
+              if ( key === "organizer" && value.includes("、")) {
+                organizerArray = value.split("、")
+              } 
+            })
+            console.log(organizerArray)
           })
 
           doSplit()
