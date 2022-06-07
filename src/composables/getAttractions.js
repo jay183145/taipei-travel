@@ -37,20 +37,12 @@ const config = {
 
           let afterSplit = []        
           let doSplit = organizerSplit.forEach(element => {
-            // load every element
-            for (let key in element) {
-              if (!element[key] == "" && !element[key] == []) {
-                // console.log(`${key}: ${element[key]}`)
-
-                let tempObj = { [key]: element[key] }
-                
-                console.log(tempObj)
-                // afterSplit.push(tempObj)
+            Object.entries(element).forEach(([key, value]) => {
+              // console.log(`${key}: ${value}`)
+              if ( key === "organizer"&& value.includes("、")) {
+                console.log(value)
               }
-            }
-            // Object.entries(element).forEach(([key, value]) => {
-            //   console.log(`${key}: ${value}`)
-            // });
+            });
           })
 
           doSplit()
