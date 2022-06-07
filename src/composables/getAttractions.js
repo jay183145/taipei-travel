@@ -62,9 +62,14 @@ const config = {
         for (let i = 0; i <= organizerLengthArray.length-1; i++ ) {
           if ( organizerLengthArray[i].length === 0  ) {
           } else {
-            // console.log(organizerSplit[i])
+            // console.log(organizerSplit[i]) 
+            // console.log(organizerLengthArray[i].length)
 
-            // organizerSplit.push(organizerSplit[i]) 
+            //copy object into array
+            let copyObject = Array(organizerLengthArray[i].length).fill(organizerSplit[i])
+            copyObject.forEach((copyObj) => {
+              return organizerSplit.push(copyObj)
+            })
           }
         }
         console.log(organizerSplit)
