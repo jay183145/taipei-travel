@@ -34,20 +34,24 @@ const config = {
           //object split and deepcopy
           let organizerSplit = _.cloneDeep(attractionWithOrganizer.value)
           // all organizer in to array
-      
+          let organizerLengthArray = []
           organizerSplit.forEach(element => {
             let organizerArray = []
+            
             Object.entries(element).forEach(([key, value]) => {
               // console.log(`${key}: ${value}`)
               if ( key === "organizer" && value.includes("、")) {
                 organizerArray = value.split("、")
+                
               } 
             })
                      
             console.log(element)
             console.log(organizerArray)
 
+            organizerLengthArray.push(organizerArray)
           })
+          console.log(organizerLengthArray)
         })
         .catch((err) => {
           error.value = err.message
