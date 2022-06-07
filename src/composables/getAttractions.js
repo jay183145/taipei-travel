@@ -38,10 +38,24 @@ const config = {
           let afterSplit = []
           
           let doSplit = organizerSplit.forEach(element => {
+            // load every element
             for (let key in element) {
-              console.log(`${key}: ${element[key]}`)
+              if (!element[key] == "" && !element[key] == []) {
+                // console.log(`${key}: ${element[key]}`)
+
+                let tempObj = { [key]: element[key] }
+                
+                console.log(tempObj)
+                // afterSplit.push(tempObj)
+              }
             }
+
+            // Object.entries(element).forEach(([key, value]) => {
+            //   console.log(`${key}: ${value}`)
+
+            // });
           })
+
           
           // let doSplit = () => {for (let obj in organizerSplit) {
           //   let tempObj = {}
@@ -60,7 +74,7 @@ const config = {
           // }
           doSplit()
 
-          // console.log(afterSplit)
+          console.log(afterSplit)
         })
         .catch((err) => {
           error.value = err.message
