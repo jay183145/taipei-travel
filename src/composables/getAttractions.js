@@ -32,16 +32,35 @@ const config = {
           console.log(attractionWithOrganizer)
           console.log(Object.values(attractionWithOrganizer._rawValue))
           //object split and deepcopy
-          const organizerSplit = _.cloneDeep(attractionWithOrganizer.value)
+          let organizerSplit = _.cloneDeep(attractionWithOrganizer.value)
           // all organizer in to array
-          organizerSplit.map((obj) => {
-            obj["organizer"] = obj["organizer"].split('、')
-            // if (obj["organizer"] > 1) {
 
-            // }
-          }) 
+          let afterSplit = []
+          
+          let doSplit = organizerSplit.forEach(element => {
+            for (let key in element) {
+              console.log(`${key}: ${element[key]}`)
+            }
+          })
+          
+          // let doSplit = () => {for (let obj in organizerSplit) {
+          //   let tempObj = {}
+          //   tempObj["begin"] = obj.begin
+          //   tempObj["id"] = obj
+          //   // if (obj["organizer"].include("、") ){
+          //   //   // afterSplit.push(i)
+          //   // } else {
+          //   //   afterSplit.push(i)
+          //   //   console.log(i)
+          //   // }
+          //   afterSplit.push(tempObj)
+          //   console.log(tempObj)
+          //   }
+            
+          // }
+          doSplit()
 
-          console.log(organizerSplit)
+          // console.log(afterSplit)
         })
         .catch((err) => {
           error.value = err.message
