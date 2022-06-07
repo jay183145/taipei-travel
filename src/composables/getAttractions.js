@@ -67,9 +67,10 @@ const config = {
 
             //copy object into array
             let copyObject = Array(organizerLengthArray[i].length).fill(organizerSplit[i])
-            copyObject.forEach((copyObj) => {
-              return organizerSplit.push(copyObj)
-            })
+            copyObject.forEach((obj) => {           
+              delete organizerSplit[i]
+              return organizerSplit.push(obj)
+            })   
           }
         }
         console.log(organizerSplit)
