@@ -35,8 +35,7 @@ const config = {
           let organizerSplit = _.cloneDeep(attractionWithOrganizer.value)
           // all organizer in to array
 
-          let afterSplit = []
-          
+          let afterSplit = []        
           let doSplit = organizerSplit.forEach(element => {
             // load every element
             for (let key in element) {
@@ -49,31 +48,12 @@ const config = {
                 // afterSplit.push(tempObj)
               }
             }
-
             // Object.entries(element).forEach(([key, value]) => {
             //   console.log(`${key}: ${value}`)
-
             // });
           })
 
-          
-          // let doSplit = () => {for (let obj in organizerSplit) {
-          //   let tempObj = {}
-          //   tempObj["begin"] = obj.begin
-          //   tempObj["id"] = obj
-          //   // if (obj["organizer"].include("、") ){
-          //   //   // afterSplit.push(i)
-          //   // } else {
-          //   //   afterSplit.push(i)
-          //   //   console.log(i)
-          //   // }
-          //   afterSplit.push(tempObj)
-          //   console.log(tempObj)
-          //   }
-            
-          // }
           doSplit()
-
           console.log(afterSplit)
         })
         .catch((err) => {
