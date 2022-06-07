@@ -2,13 +2,16 @@
   <h1>台北旅遊網</h1>
   <div class="collapse">
     <div v-if="error">{{ error }}</div>
-    <div v-if="attractionWithOrganizer!==null" v-for="organizer in attractionWithOrganizer" :key="attractionWithOrganizer.id" class="attractions">
+    <div v-if="attractionWithOrganizer!==null" class="el-collapse">
+      <div  v-for="organizer in attractionWithOrganizer" :key="organizer.id" class="attractions">
       <el-collapse>
         <el-collapse-item :title="organizer.organizer" >
           <a :href="organizer.url">{{ organizer.title }}</a>
         </el-collapse-item>
       </el-collapse>
     </div>
+  </div>
+    
     <p v-else>
       <Spinner />
     </p>
