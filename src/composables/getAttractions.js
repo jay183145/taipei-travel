@@ -5,7 +5,6 @@ import _ from 'lodash'
 const getAttractions = ()=> {
 
   const attractions = ref(null)
-
   const attractionWithOrganizer = ref(null)
   const error = ref(null)
 
@@ -33,49 +32,52 @@ const config = {
           // console.log(attractionWithOrganizer)
           // console.log(Object.values(attractionWithOrganizer._rawValue))
           //object split and deepcopy
-          let organizerSplit = _.cloneDeep(attractionWithOrganizer.value)
+          let organizerAfterFilterCopy = _.cloneDeep(attractionWithOrganizer.value)
           //---------xxxxxxxxx---------------- get the data ------------------xxxxxxxxxxxx---------// 
 
           //-----------------------------------  filter data  ----------------------------------------//
-          // split("、") array length array
-          let organizerLengthArray = []
+          // split("、") array organizer data array
+          let organizerDataArray = []
           //iter through Array of Object
-          organizerSplit.forEach(element => {
+          organizerAfterFilterCopy.forEach(element => {
             // split("、") array
             let organizerArray = []    
             Object.entries(element).forEach(([key, value]) => {
               // console.log(`${key}: ${value}`)
               if ( key === "organizer" && value.includes("、")) {
-                organizerArray = value.split("、")
-                
+                organizerArray = value.split("、")   
               } 
             }) 
             //------->  log each object         
             // console.log(element)
             // console.log(organizerArray)
             // push split("、") array  to an array 
-            organizerLengthArray.push(organizerArray)
+            organizerDataArray.push(organizerArray)
           })
           //----> log  split("、") array length array
           // console.log(organizerLengthArray)
 
-          for (let i = 0; i <= organizerLengthArray.length-1; i++ ) {
-            if ( organizerLengthArray[i].length === 0  ) {
+          for (let i = 0; i <= organizerDataArray.length-1; i++ ) {
+            if ( organizerDataArray[i].length === 0  ) {
             } else {
               // console.log(organizerSplit[i]) 
               // console.log(organizerLengthArray[i].length)
 
               //copy object into array
-              let copyObject = Array(organizerLengthArray[i].length).fill(organizerSplit[i])
+              let copyObject = Array(organizerDataArray[i].length).fill(organizerAfterFilterCopy[i])
               copyObject.forEach((obj, index) => {           
                 console.log(index)
-                console.log(organizerLengthArray[i][index])
-                return organizerSplit.push(obj)
+                console.log(organizerDataArray[i][index])
+                console.log(obj.organizer)
+                // deepclone or all copy data will be the same 
+                obj = _.cloneDeep(obj)
+                obj["organizer"] = organizerDataArray[i][index]
+                organizerAfterFilterCopy.push(obj)
               })
-              delete organizerSplit[i]
+              delete organizerAfterFilterCopy[i]
             }
           }
-          console.log(organizerSplit)
+          console.log(organizerAfterFilterCopy)
 
 
         //------------xxxxxxxxxxx---------------  filter data  ------------xxxxxxxx--------------//
