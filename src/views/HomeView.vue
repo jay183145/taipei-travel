@@ -4,14 +4,13 @@
     <div v-if="error">{{ error }}</div>
     <div v-if="attractionWithOrganizer!==null" class="el-collapse">
       <div  v-for="organizer in attractionWithOrganizer" :key="organizer.id" class="attractions">
-      <el-collapse>
-        <el-collapse-item :title="organizer.organizer" >
-          <a :href="organizer.url">{{ organizer.title }}</a>
-        </el-collapse-item>
-      </el-collapse>
-    </div>
-  </div>
-    
+        <el-collapse>
+          <el-collapse-item :title="organizer.organizer" >
+            <a :href="organizer.url">{{ organizer.title }}</a>
+          </el-collapse-item>
+        </el-collapse>
+      </div>
+    </div>  
     <p v-else>
       <Spinner />
     </p>
@@ -24,16 +23,9 @@ import getAttractions from '../composables/getAttractions'
 import Spinner from '../components/Spinner.vue'
 import { ref } from 'vue'
 
-
 const { attractionWithOrganizer, attractions, error, load } = getAttractions()
 
 load()
-
-
-// for(let i = 0; i <= attractionWithOrganizer.List.length; i++) {
-
-// }
-
 
 </script>
 
