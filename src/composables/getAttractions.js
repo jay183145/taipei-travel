@@ -2,21 +2,22 @@ import axios from 'axios';
 import { ref } from 'vue';
 import _ from 'lodash'
 
-const getAttractions = ()=> {
+const getAttractions = () => {
 
   const attractions = ref(null)
   const attractionWithOrganizer = ref(null)
   const error = ref(null)
+  const organizerAfterFilterCopy = ref(null)
 
-//set header
-const config = {
-  headers: {
-    header1: 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.61 Safari/537.36',
+  //set header
+  const config = {
+    headers: {
+      header1: 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.61 Safari/537.36',
+    }
   }
-}
   const apiURL = '/api/zh-tw/Events/Activity?begin=2022-06-02&end=2022-06-02&page=1'
   // Make a request for a user with a given ID
-  
+
   const load = async () => {
     try {
       await axios.get(apiURL, config)
@@ -24,22 +25,20 @@ const config = {
           //----------------------------------- get the origin data ----------------------------------------// 
           //get all datas in the setting time
           // attractions.value = response.data
-          // console.log(attractions)
-
-          // --------------------------get the datas which has organizer---------------
+          // --------------------------filter without organizer parameter ---------------
           attractionWithOrganizer.value = response.data.data.filter((hasOrg) => hasOrg.organizer)
           // -----> log data
           // console.log(attractionWithOrganizer)
           // console.log(Object.values(attractionWithOrganizer._rawValue))
-          //object split and deepcopy
-          let organizerAfterFilterCopy = _.cloneDeep(attractionWithOrganizer.value)
-          //---------xxxxxxxxx---------------- get the data ------------------xxxxxxxxxxxx---------// 
+          // -----> object deepcopy
+          organizerAfterFilterCopy.value = _.cloneDeep(attractionWithOrganizer.value)
+          //-----------xxxxxxxxx---------------- get the data ------------------xxxxxxxxxxxx----------------// 
 
           //-----------------------------------  filter data  ----------------------------------------//
-          // split("、") array organizer data array
+          // split("、") organizer array organizer data array
           let organizerDataArray = []
           //iter through Array of Object
-          organizerAfterFilterCopy.forEach(element => {
+          organizerAfterFilterCopy.value.forEach(element => {
             // split("、") array
             let organizerArray = []    
             Object.entries(element).forEach(([key, value]) => {
@@ -64,21 +63,21 @@ const config = {
               // console.log(organizerLengthArray[i].length)
 
               //copy object into array
-              let copyObject = Array(organizerDataArray[i].length).fill(organizerAfterFilterCopy[i])
+              let copyObject = Array(organizerDataArray[i].length).fill(organizerAfterFilterCopy.value[i])
               copyObject.forEach((obj, index) => {           
-                console.log(index)
-                console.log(organizerDataArray[i][index])
-                console.log(obj.organizer)
+                // console.log(index)
+                // console.log(organizerDataArray[i][index])
+                // console.log(obj.organizer)
                 // deepclone or all copy data will be the same 
                 obj = _.cloneDeep(obj)
                 obj["organizer"] = organizerDataArray[i][index]
-                organizerAfterFilterCopy.push(obj)
+                organizerAfterFilterCopy.value.push(obj)
               })
-              delete organizerAfterFilterCopy[i]
+              delete organizerAfterFilterCopy.value[i]
             }
           }
-          console.log(organizerAfterFilterCopy)
-
+          // text the value after all function
+          // console.log(organizerAfterFilterCopy.value)
 
         //------------xxxxxxxxxxx---------------  filter data  ------------xxxxxxxx--------------//
 
@@ -92,7 +91,9 @@ const config = {
       error.value = err.message
     }
   }
-
-  return { attractionWithOrganizer, attractions, error, load }
+  // test wether value pass successfully
+  // console.log(organizerAfterFilterCopy)
+  return { organizerAfterFilterCopy, attractionWithOrganizer, attractions, error, load }
 }
+
 export default getAttractions
