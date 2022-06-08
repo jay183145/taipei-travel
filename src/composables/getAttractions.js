@@ -56,25 +56,31 @@ const config = {
             // push split("、") array  to an array 
             organizerLengthArray.push(organizerArray)
           })
-        //----> log  split("、") array length array
-        // console.log(organizerLengthArray)
+          //----> log  split("、") array length array
+          // console.log(organizerLengthArray)
 
-        for (let i = 0; i <= organizerLengthArray.length-1; i++ ) {
-          if ( organizerLengthArray[i].length === 0  ) {
-          } else {
-            // console.log(organizerSplit[i]) 
-            // console.log(organizerLengthArray[i].length)
+          for (let i = 0; i <= organizerLengthArray.length-1; i++ ) {
+            if ( organizerLengthArray[i].length === 0  ) {
+            } else {
+              // console.log(organizerSplit[i]) 
+              // console.log(organizerLengthArray[i].length)
 
-            //copy object into array
-            let copyObject = Array(organizerLengthArray[i].length).fill(organizerSplit[i])
-            copyObject.forEach((obj) => {           
+              //copy object into array
+              let copyObject = Array(organizerLengthArray[i].length).fill(organizerSplit[i])
+              copyObject.forEach((obj, index) => {           
+                console.log(index)
+                console.log(organizerLengthArray[i][index])
+                return organizerSplit.push(obj)
+              })
               delete organizerSplit[i]
-              return organizerSplit.push(obj)
-            })   
+            }
           }
-        }
-        console.log(organizerSplit)
+          console.log(organizerSplit)
+
+
         //------------xxxxxxxxxxx---------------  filter data  ------------xxxxxxxx--------------//
+
+
         })
         .catch((err) => {
           error.value = err.message
