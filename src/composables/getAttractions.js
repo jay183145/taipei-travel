@@ -7,7 +7,7 @@ const getAttractions = () => {
   const attractions = ref(null)
   const attractionWithOrganizer = ref(null)
   const error = ref(null)
-  const organizerAfterFilterCopy = ref(null)
+  const organizerAfterFilterCopy = ref([])
 
   //set header
   const config = {
@@ -77,7 +77,7 @@ const getAttractions = () => {
             }
           }
           // text the value after all function
-          // console.log(organizerAfterFilterCopy.value)
+          console.log(organizerAfterFilterCopy)
 
         //------------xxxxxxxxxxx---------------  filter data  ------------xxxxxxxx--------------//
 

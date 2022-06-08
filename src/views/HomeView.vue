@@ -1,6 +1,6 @@
 <template>
   <h1>台北旅遊網</h1>
-  <div class="collapse">
+  <!-- <div class="collapse">
     <div v-if="error">{{ error }}</div>
     <div v-if="attractionWithOrganizer!==null" class="el-collapse">
       <div  v-for="organizer in attractionWithOrganizer" :key="organizer" class="attractions">
@@ -14,6 +14,9 @@
     <p v-else>
       <Spinner />
     </p>
+  </div> -->
+  <div v-for="organizer in organizerAfterFilterCopy" :key="organizer">
+    {{ organizer }}
   </div>
 </template>
 
