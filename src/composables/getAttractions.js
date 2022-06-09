@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 import _ from 'lodash'
 
 const getAttractions = () => {
@@ -7,7 +7,7 @@ const getAttractions = () => {
   const attractions = ref(null)
   const attractionWithOrganizer = ref(null)
   const error = ref(null)
-  const organizerAfterFilterCopy = ref([])
+  let organizers = reactive({})
 
   //set header
   const config = {
@@ -31,14 +31,14 @@ const getAttractions = () => {
           // console.log(attractionWithOrganizer)
           // console.log(Object.values(attractionWithOrganizer._rawValue))
           // -----> object deepcopy
-          organizerAfterFilterCopy.value = _.cloneDeep(attractionWithOrganizer.value)
+          let organizerAfterFilterCopy = _.cloneDeep(attractionWithOrganizer.value)
           //-----------xxxxxxxxx---------------- get the data ------------------xxxxxxxxxxxx----------------// 
 
           //-----------------------------------  filter data  ----------------------------------------//
           // split("、") organizer array organizer data array
           let organizerDataArray = []
           //iter through Array of Object
-          organizerAfterFilterCopy.value.forEach(element => {
+          organizerAfterFilterCopy.forEach(element => {
             // split("、") array
             let organizerArray = []    
             Object.entries(element).forEach(([key, value]) => {
@@ -63,7 +63,7 @@ const getAttractions = () => {
               // console.log(organizerLengthArray[i].length)
 
               //copy object into array
-              let copyObject = Array(organizerDataArray[i].length).fill(organizerAfterFilterCopy.value[i])
+              let copyObject = Array(organizerDataArray[i].length).fill(organizerAfterFilterCopy[i])
               copyObject.forEach((obj, index) => {           
                 // console.log(index)
                 // console.log(organizerDataArray[i][index])
@@ -71,14 +71,15 @@ const getAttractions = () => {
                 // deepclone or all copy data will be the same 
                 obj = _.cloneDeep(obj)
                 obj["organizer"] = organizerDataArray[i][index]
-                organizerAfterFilterCopy.value.push(obj)
+                organizerAfterFilterCopy.push(obj)
               })
-              delete organizerAfterFilterCopy.value[i]
+              delete organizerAfterFilterCopy[i]
             }
           }
           // text the value after all function
-          console.log(organizerAfterFilterCopy)
-
+          // console.log(organizerAfterFilterCopy)
+          organizers = organizerAfterFilterCopy
+          // console.log(organizers)
         //------------xxxxxxxxxxx---------------  filter data  ------------xxxxxxxx--------------//
 
 
@@ -93,7 +94,8 @@ const getAttractions = () => {
   }
   // test wether value pass successfully
   // console.log(organizerAfterFilterCopy)
-  return { organizerAfterFilterCopy, attractionWithOrganizer, attractions, error, load }
+  console.log(organizers)
+  return { organizers, attractionWithOrganizer, attractions, error, load }
 }
 
 export default getAttractions

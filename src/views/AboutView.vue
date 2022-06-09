@@ -2,7 +2,7 @@
 
 import getAttractions from '../composables/getAttractions'
 import Spinner from '../components/Spinner.vue'
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 
 
 const { attractionWithOrganizer, attractions, error, load } = getAttractions()
