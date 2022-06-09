@@ -8,14 +8,17 @@ const { organizers, attractionWithOrganizer, attractions, error, load } = getAtt
 
 load()
 
+console.log(organizers)
+console.log(JSON.stringify(organizers, null, 4))
+
 </script>
 
 <template>
   <h1>台北旅遊網</h1>
-  <!-- <div class="collapse">
+  <div class="collapse">
     <div v-if="error">{{ error }}</div>
     <div v-if="attractionWithOrganizer!==null" class="el-collapse">
-      <div  v-for="organizer in organizers" :key="organizer" class="attractions">
+      <div  v-for="organizer in attractionWithOrganizer" :key="organizer" class="attractions">
         <el-collapse>
           <el-collapse-item :title="organizer.organizer" >
             <a :href="organizer.url">{{ organizer.title }}</a>
@@ -26,10 +29,12 @@ load()
     <p v-else>
       <Spinner />
     </p>
-  </div> -->
-  <div v-for="organizer in organizers" :key="organizer">
-    {{ organizer }}
   </div>
+  <!-- <div v-for="organizer in organizers" :key="organizer">
+    <div>
+      {{ organizer }}
+    </div>
+  </div> -->
 </template>
 
 <style>

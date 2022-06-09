@@ -28,7 +28,7 @@ const getAttractions = () => {
           // --------------------------filter without organizer parameter ---------------
           attractionWithOrganizer.value = response.data.data.filter((hasOrg) => hasOrg.organizer)
           // -----> log data
-          // console.log(attractionWithOrganizer)
+          console.log(attractionWithOrganizer)
           // console.log(Object.values(attractionWithOrganizer._rawValue))
           // -----> object deepcopy
           let organizerAfterFilterCopy = _.cloneDeep(attractionWithOrganizer.value)
@@ -79,11 +79,8 @@ const getAttractions = () => {
           // text the value after all function
           // console.log(organizerAfterFilterCopy)
           organizers.value = organizerAfterFilterCopy
-          organizers.__v_skip = false
-          console.log(organizers)
+
         //------------xxxxxxxxxxx---------------  filter data  ------------xxxxxxxx--------------//
-
-
         })
         .catch((err) => {
           error.value = err.message
@@ -94,8 +91,8 @@ const getAttractions = () => {
     }
   }
   // test wether value pass successfully
-  // console.log(organizerAfterFilterCopy)
-  console.log(organizers)
+  // console.log(organizers)
+
   return { organizers, attractionWithOrganizer, attractions, error, load }
 }
 
