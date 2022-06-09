@@ -12,7 +12,7 @@ load()
 
 <template>
   <h1>台北旅遊網</h1>
-  <div class="collapse">
+  <!-- <div class="collapse">
     <div v-if="error">{{ error }}</div>
     <div v-if="attractionWithOrganizer!==null" class="el-collapse">
       <div  v-for="organizer in organizers" :key="organizer" class="attractions">
@@ -26,10 +26,10 @@ load()
     <p v-else>
       <Spinner />
     </p>
-  </div>
-  <!-- <div v-for="organizer in organizers" :key="organizer">
-    {{ organizer }}
   </div> -->
+  <div v-for="organizer in organizers" :key="organizer">
+    {{ organizer }}
+  </div>
 </template>
 
 <style>

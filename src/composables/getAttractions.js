@@ -7,7 +7,7 @@ const getAttractions = () => {
   const attractions = ref(null)
   const attractionWithOrganizer = ref(null)
   const error = ref(null)
-  let organizers = reactive({})
+  let organizers = ref(null)
 
   //set header
   const config = {
@@ -78,8 +78,9 @@ const getAttractions = () => {
           }
           // text the value after all function
           // console.log(organizerAfterFilterCopy)
-          organizers = organizerAfterFilterCopy
-          // console.log(organizers)
+          organizers.value = organizerAfterFilterCopy
+          organizers.__v_skip = false
+          console.log(organizers)
         //------------xxxxxxxxxxx---------------  filter data  ------------xxxxxxxx--------------//
 
 
