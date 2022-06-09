@@ -18,7 +18,7 @@ load()
   <div class="collapse">
     <div v-if="error">{{ error }}</div>
     <div v-if="attractionWithOrganizer!==null" class="el-collapse">
-      <div  v-for="organizer in attractionWithOrganizer" :key="organizer" class="attractions">
+      <div  v-for="organizer in organizers" :key="organizer" class="attractions">
         <el-collapse>
           <el-collapse-item :title="organizer.organizer" >
             <a :href="organizer.url">{{ organizer.title }}</a>

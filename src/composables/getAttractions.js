@@ -7,7 +7,7 @@ const getAttractions = () => {
   const attractions = ref(null)
   const attractionWithOrganizer = ref(null)
   const error = ref(null)
-  let organizers = ref(null)
+  let organizers = ref([])
 
   //set header
   const config = {
@@ -78,8 +78,10 @@ const getAttractions = () => {
           }
           // text the value after all function
           // console.log(organizerAfterFilterCopy)
-          organizers.value = organizerAfterFilterCopy
-
+          organizerAfterFilterCopy.forEach((obj) => {
+            organizers.value.push(obj)
+          })
+          console.log(organizers)
         //------------xxxxxxxxxxx---------------  filter data  ------------xxxxxxxx--------------//
         })
         .catch((err) => {
@@ -90,8 +92,6 @@ const getAttractions = () => {
       error.value = err.message
     }
   }
-  // test wether value pass successfully
-  console.log(organizers)
 
   return { organizers, attractionWithOrganizer, attractions, error, load }
 }
