@@ -1,3 +1,15 @@
+<script setup>
+
+import getAttractions from '../composables/getAttractions'
+import Spinner from '../components/Spinner.vue'
+import { ref } from 'vue'
+
+const { organizerAfterFilterCopy, attractionWithOrganizer, attractions, error, load } = getAttractions()
+
+load()
+
+</script>
+
 <template>
   <h1>台北旅遊網</h1>
   <!-- <div class="collapse">
@@ -19,18 +31,6 @@
     {{ organizer }}
   </div>
 </template>
-
-<script setup>
-
-import getAttractions from '../composables/getAttractions'
-import Spinner from '../components/Spinner.vue'
-import { ref } from 'vue'
-
-const { organizerAfterFilterCopy, attractionWithOrganizer, attractions, error, load } = getAttractions()
-
-load()
-
-</script>
 
 <style>
 .collapse {
