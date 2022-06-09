@@ -8,8 +8,8 @@ const { organizers, attractionWithOrganizer, attractions, error, load } = getAtt
 
 load()
 
-console.log(organizers)
-console.log(JSON.stringify(organizers, null, 4))
+// console.log(organizers)
+// console.log(JSON.stringify(organizers, null, 4))
 
 </script>
 
