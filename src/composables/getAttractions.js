@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { reactive, ref } from 'vue';
+import { ref } from 'vue';
 import _ from 'lodash'
 
 const getAttractions = () => {
