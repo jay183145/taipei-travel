@@ -4,10 +4,12 @@ import getAttractions from '../composables/getAttractions'
 import Spinner from '../components/Spinner.vue'
 import { ref } from 'vue'
 
-
-const { attractionWithOrganizer, attractions, error, load } = getAttractions()
+const { organizers, attractionWithOrganizer, attractions, error, load } = getAttractions()
 
 load()
+
+// console.log(organizers)
+// console.log(JSON.stringify(organizers, null, 4))
 
 </script>
 
@@ -15,17 +17,20 @@ load()
   <h1>台北旅遊網</h1>
   <div class="collapse">
     <div v-if="error">{{ error }}</div>
-    <div v-if="attractionWithOrganizer!==null" class="el-collapse">
-      <div  v-for="organizer in attractionWithOrganizer" :key="organizer.id" class="attractions">
-      <el-collapse>
-        <el-collapse-item :title="organizer.organizer" >
-          <a :href="organizer.url">{{ organizer.title }}</a>
-        </el-collapse-item>
-      </el-collapse>
-    </div>
+    <div v-if="attractionWithOrganizer" class="el-collapse">
+      <div  v-for="organizer in attractionWithOrganizer" :key="organizer" class="attractions">
+        <el-collapse>
+          <el-collapse-item :title="organizer.organizer" >
+            <a :href="organizer.url">{{ organizer.title }}</a>
+          </el-collapse-item>
+        </el-collapse>
+      </div>
+    </div>  
+    <p v-else>
+      <Spinner />
+    </p>
   </div>
 </template>
-
 
 <style>
 .collapse {
