@@ -15,7 +15,7 @@ const getAttractions = () => {
       header1: 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.61 Safari/537.36',
     }
   }
-  const apiURL = '/api/zh-tw/Events/Activity?begin=2022-06-02&end=2022-06-02&page=1'
+  const apiURL = '/api/zh-tw/Events/Activity?begin=2022-06-10&end=2022-06-10&page=1'
   // Make a request for a user with a given ID
 
   const load = async () => {
