@@ -78,6 +78,8 @@ const getAttractions = () => {
           }
           // text the value after all function
           // console.log(organizerAfterFilterCopy)
+
+          //push each value into organizers value
           organizerAfterFilterCopy.forEach((obj) => {
             organizers.value.push(obj)
           })
